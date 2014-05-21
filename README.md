@@ -7,4 +7,4 @@
 
 In windows:
 
-cls && gcc -o main.exe main.c && main.exe
+cls && gcc -O3 -o main.exe main.c && main.exe

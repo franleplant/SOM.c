@@ -6,7 +6,7 @@
 #define MAX_ITERATION_NUMBER 3000
 
 /*
-** NOTE: In this stage it took 9 minutes to complete the 3000 iteration
+** NOTE: In this stage it took 1 minute to complete the 3000 iteration
 ** over the 270 neurons
 */
 
@@ -64,6 +64,9 @@ main() {
 				distance.z = Neuron[i].z - Neuron[j].z;
 
 				distance_norm = calc_norm(distance);
+
+				//Idea: restrict max distance between two neurons
+				//in order to reduce the ammount of operations in each iteration
 
 				if (distance_norm > 0) {
 
