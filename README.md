@@ -1,4 +1,5 @@
-
+SOM.c
+=====
 ### Download MinGW [link](http://www.mingw.org/)
 
 
@@ -8,3 +9,5 @@
 In windows:
 
 cls && gcc -O3 -o main.exe main.c && main.exe
+
+
