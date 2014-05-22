@@ -5,10 +5,6 @@
 #define MAX_NEURON_NUMBER 270
 #define MAX_ITERATION_NUMBER 3000
 
-/*
-** NOTE: In this stage it took 1 minute to complete the 3000 iteration
-** over the 270 neurons
-*/
 
 typedef struct {
    double x;
