@@ -14,6 +14,6 @@ make
 ./main
 ```
 
-In this environment it takes around 4 minutes to complete the 3000 iterations.
+In this environment it takes around 2 minutes to complete the 3000 iterations.
 
 
