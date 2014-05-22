@@ -32,7 +32,6 @@ main() {
 	int i;
 	int iter;
 	int j;
-	int k;
 	Point fer_i;
 	Point distance;
 	double distance_norm;
