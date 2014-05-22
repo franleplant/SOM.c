@@ -1,7 +1,5 @@
 SOM.c
 =====
-### Download MinGW [link](http://www.mingw.org/)
-
 
 ### Run the code
 
@@ -16,6 +14,6 @@ make
 ./main
 ```
 
-In this environment it takes around 4 minutes to complet the 3000 iterations.
+In this environment it takes around 4 minutes to complete the 3000 iterations.
 
 
