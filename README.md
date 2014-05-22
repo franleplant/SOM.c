@@ -35,3 +35,9 @@ Focus on the `real` field, that is the time that it took the program to return.
 C is pretty good at making a lot of calculations, but its really slow (as you might suspect)
 on printing values, so avoid making a lot of printing because its very time consuming.
 
+
+
+## More info
+
+Checkout our [wiki](https://github.com/franleplant/SOM.wiki.git)
+for more info!
