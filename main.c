@@ -25,7 +25,7 @@ double calc_norm(Point p);
 
 
 
-main() {
+int main() {
 
 	Point Neuron[MAX_NEURON_NUMBER];
 
@@ -48,6 +48,7 @@ main() {
 	//Calculate the neuron distribution
 	for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
 
+		printf("iteration %d \n", iter);
 
 		for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 
@@ -82,13 +83,13 @@ main() {
 
 			standarize(  &Neuron[i]  );
 
-			printf("(%f, %f, %f) it = %d \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, iter);
+			//printf("(%f, %f, %f) it = %d \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, iter);
 
 		}
 
 	}
 
-	
+	return 1;	
 };
 
 
