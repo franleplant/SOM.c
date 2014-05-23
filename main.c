@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h> /* required for randomize() and random() */
-#include <math.h> /*This is needed for the sqrt and pow functions to work*/
+#include <stdlib.h> /* randomize(), random() */
+#include <math.h> /* sqrt(), pow() */
 
 #define MAX_NEURON_NUMBER 270
 #define MAX_ITERATION_NUMBER 3000
@@ -12,11 +12,12 @@ typedef struct {
    double z;
 } Point;
 
-
+//Prototypes
 double random();
 Point * random_point(Point *p);
 Point * standarize(Point *p);
 double calc_norm(Point p);
+void point_init(Point *p, double x, double y, double z);
 
 
 
@@ -28,6 +29,7 @@ int main() {
 	int i;
 	int iter;
 	int j;
+	// Electrostatic repulsion Force
 	Point fer_i;
 	Point distance;
 	double distance_norm;
@@ -36,8 +38,7 @@ int main() {
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 		standarize(  random_point(&Neuron[i])  );
-		//printf("(%f, %f, %f) norm = %f \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, calc_norm(Neuron[i]));
-		
+		//printf("(%f, %f, %f) norm = %f \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, calc_norm(Neuron[i]));	
 	};
 
 
@@ -48,10 +49,7 @@ int main() {
 
 		for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 
-
-			fer_i.x = 0;
-			fer_i.y = 0;
-			fer_i.z = 0;
+			point_init(&fer_i, 0, 0, 0);
 
 			for(j = 0; j < MAX_NEURON_NUMBER; j++) {
 
@@ -60,9 +58,6 @@ int main() {
 				distance.z = Neuron[i].z - Neuron[j].z;
 
 				distance_norm = calc_norm(distance);
-
-				//Idea: restrict max distance between two neurons
-				//in order to reduce the ammount of operations in each iteration
 
 				if (distance_norm > 0) {
 
@@ -122,4 +117,10 @@ Point * standarize(Point *p) {
 	p->z /= norm;
 
 	return p;
+};
+
+void point_init(Point *p, double x, double y, double z) {
+	p->x = x;
+	p->y = y;
+	p->z = z;
 };
