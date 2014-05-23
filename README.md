@@ -39,5 +39,5 @@ on printing values, so avoid making a lot of printing because its very time cons
 
 ## More info
 
-Checkout our [wiki](https://github.com/franleplant/SOM.wiki.git)
+Checkout our [wiki](https://github.com/franleplant/SOM.c/wiki)
 for more info!
