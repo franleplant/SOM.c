@@ -11,7 +11,6 @@ all: $(P)
 
 $(P): clean
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(P)  $(LDLIBS)
-	./$(P)
 
 
 # Time tasks
