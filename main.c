@@ -37,8 +37,7 @@ int main() {
 
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
-		standarize(  random_point(&Neuron[i])  );
-		//printf("(%f, %f, %f) norm = %f \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, calc_norm(Neuron[i]));	
+		standarize(  random_point(&Neuron[i])  );	
 	};
 
 
@@ -73,14 +72,11 @@ int main() {
 			Neuron[i].z += fer_i.z * pow(dltt, 2);
 
 			standarize(  &Neuron[i]  );
-
-			//printf("(%f, %f, %f) it = %d \n", Neuron[i].x, Neuron[i].y, Neuron[i].z, iter);
-
 		}
 
 	}
 
-	return 1;	
+	return 0;	
 };
 
 
