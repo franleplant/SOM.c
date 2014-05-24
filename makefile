@@ -8,20 +8,39 @@ OPTIMIZATION=-O3
 
 all: $(P)
 
-# $@ the full target filename
-# $* The target file with the suffix cut off. So if the target is  prog.o
-# $< The name of the file that caused this target to get triggered and made. 
 
-$(P): $(OBJECTS)
-	
+$(P): clean
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(P)  $(LDLIBS)
+	./$(P)
+
+
+# Time tasks
+# Needs to process the output into a more understandable way
+time: $(P)
+	time ./$(P)
 
 # Compiles with no optimization
 # Starts gdb
-debug: $(OBJECTS)
-	OPTIMIZATION=-O0
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $*.c
+
+# Target specific variable
+debug: OPTIMIZATION=-O0
+
+debug: clean 
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(P)  $(LDLIBS) 
 	gdb $(P)
 
+
+
+# verbose out put
+verbose: $(P)
+	valgrind ./$(P)
+
+
 clean:
-	rm -f $(P)
+	rm -f $(P); clear
+
+
+# $@ the full target filename
+# $* The target file with the suffix cut off. So if the target is  prog.o
+# $< The name of the file that caused this target to get triggered and made. 
 

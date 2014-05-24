@@ -14,6 +14,14 @@ make
 ./main
 ```
 
+## Make tasks
+
+- `make`: compile and run the program
+- `make debug`: compile without optimization and open gdb debugger
+- `make verbose`: compile normally and run it with Valgrind to see more verbose error output
+- `make clean`: removes compiled files and clear the screen
+
+
 ## Timing
 
 
@@ -49,10 +57,8 @@ in order to make it faster potentially given you troubles to debug.
 To debug:
 ```bash
 
-# compile
-make
-# open gdb
-gdb main
+# Run debug make task
+make debug
 # On gdb console
 # Create a breakpoint on line 74
 break 74
