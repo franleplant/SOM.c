@@ -49,9 +49,6 @@ on printing values, so avoid making a lot of printing because its very time cons
 The VM comes with GDB which is the debugger for C.
 Use GDB instead of old printf.
 
-> **NOTE ABOUT OPTIMIZATION:** you may want to remove `-O3` flag from `makefile`
-to inspect correctly the program, sometimes the optimization distorts completely your code
-in order to make it faster potentially given you troubles to debug.
 
 
 To debug:
