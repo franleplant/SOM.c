@@ -25,14 +25,13 @@ time: $(P)
 # Target specific variable
 debug: OPTIMIZATION=-O0
 
-debug: clean 
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(P)  $(LDLIBS) 
+debug: clean $(P)
 	gdb $(P)
 
 
 
 # verbose out put
-verbose: $(P)
+verbose: clean $(P)
 	valgrind ./$(P)
 
 
