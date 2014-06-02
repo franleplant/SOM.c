@@ -35,6 +35,13 @@ int main() {
 	double distance_norm;
 	float dltt = 0.1;
 
+	//Initialize angular cos max placeholder
+	double cos_ij_max = -1;
+	double cos_ij = 0;
+
+
+
+
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 		standarize(  random_point(&Neuron[i])  );	
@@ -44,7 +51,7 @@ int main() {
 	//Calculate the neuron distribution
 	for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
 
-		printf("iteration %d \n", iter);
+		//printf("iteration %d \n", iter);
 
 		for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 
@@ -63,7 +70,19 @@ int main() {
 					fer_i.x += distance.x / distance_norm;
 					fer_i.y += distance.y / distance_norm;
 					fer_i.z += distance.z / distance_norm;
-				}
+				};
+
+				
+				if (iter == 2999) {
+					//Calculate angular cosine between Neurons i and j
+					cos_ij = Neuron[i].x * Neuron[j].x + Neuron[i].y * Neuron[j].y + Neuron[i].z * Neuron[j].z;
+
+					//Max calc
+					if (cos_ij > cos_ij_max) {
+						cos_ij_max = cos_ij;
+					};					
+				};
+	
 			};
 
 			//Calculate the position change due to the Electrostatic Repulsion Force aceleration
@@ -76,8 +95,23 @@ int main() {
 
 	}
 
+	double a = 1 - pow(cos_ij_max, 2);
+	double b = abs(a) < 1e-12 ? 0 : a ;
+	
+	double sin_ij_max = sqrt((double)  b);
+
+	printf("max angle: %f      %f \n", sin_ij_max, cos_ij_max);	
+
+	double max_angle = atan( sin_ij_max / cos_ij_max );
+
+
+	 //sqrt(abs(x) < 1e-12 ? 0 : x); 
+
+	printf("max angle: %f \n", max_angle);
+
 	return 0;	
 };
+
 
 
 
