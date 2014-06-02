@@ -4,6 +4,7 @@
 
 #define MAX_NEURON_NUMBER 270
 #define MAX_ITERATION_NUMBER 3000
+#define PI 3.14159265358979323846
 
 
 typedef struct {
@@ -35,12 +36,11 @@ int main() {
 	double distance_norm;
 	float dltt = 0.1;
 
-	//Initialize angular cos max placeholder
-	double cos_ij_max = -1;
 	double cos_ij = 0;
 
 
 
+	double cos_ij_mean = 0;
 
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
@@ -77,10 +77,8 @@ int main() {
 					//Calculate angular cosine between Neurons i and j
 					cos_ij = Neuron[i].x * Neuron[j].x + Neuron[i].y * Neuron[j].y + Neuron[i].z * Neuron[j].z;
 
-					//Max calc
-					if (cos_ij > cos_ij_max) {
-						cos_ij_max = cos_ij;
-					};					
+					cos_ij_mean = ( cos_ij_mean + cos_ij ) / 2;
+					
 				};
 	
 			};
@@ -95,19 +93,11 @@ int main() {
 
 	}
 
-	double a = 1 - pow(cos_ij_max, 2);
-	double b = abs(a) < 1e-12 ? 0 : a ;
-	
-	double sin_ij_max = sqrt((double)  b);
 
-	printf("max angle: %f      %f \n", sin_ij_max, cos_ij_max);	
+	double sin_ij_mean = sqrt(  1 - pow(cos_ij_mean, 2));
+	double angle_mean = atan( sin_ij_mean / cos_ij_mean );
 
-	double max_angle = atan( sin_ij_max / cos_ij_max );
-
-
-	 //sqrt(abs(x) < 1e-12 ? 0 : x); 
-
-	printf("max angle: %f \n", max_angle);
+	printf("mean angle: %f  \n", angle_mean * 180/PI);
 
 	return 0;	
 };
@@ -124,7 +114,6 @@ double random(){
 
 Point * random_point(Point *p) {
 
-	//printf("%f", p->x);
 	p->x = random();
 	p->y = random();
 	p->z = random();
