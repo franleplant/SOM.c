@@ -55,16 +55,14 @@ void point_init(Point *p, double x, double y, double z) {
 
 void calc_neuron_distribution(Point * Neuron) {
 
-	int i;
-	int iter;
-	int j;
+	
 	// Electrostatic repulsion Force
-	Point fer_i;
-	Point distance;
-	double distance_norm;
+	Point fer_i, distance;
 	float dltt = 0.1;
 	double cos_ij = 0;
 	double cos_ij_mean = 0;
+	double distance_norm;
+	int i, j, iter;
 
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
@@ -74,9 +72,6 @@ void calc_neuron_distribution(Point * Neuron) {
 
 	//Calculate the neuron distribution
 	for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
-
-		//printf("iteration %d \n", iter);
-
 		for(i = 0; i < MAX_NEURON_NUMBER; i++) {
 
 			point_init(&fer_i, 0, 0, 0);
@@ -90,21 +85,16 @@ void calc_neuron_distribution(Point * Neuron) {
 				distance_norm = calc_norm(distance);
 
 				if (distance_norm > 0) {
-
 					fer_i.x += distance.x / distance_norm;
 					fer_i.y += distance.y / distance_norm;
 					fer_i.z += distance.z / distance_norm;
 				};
 
-				
 				if (iter == 2999) {
 					//Calculate angular cosine between Neurons i and j
 					cos_ij = Neuron[i].x * Neuron[j].x + Neuron[i].y * Neuron[j].y + Neuron[i].z * Neuron[j].z;
-
-					cos_ij_mean = ( cos_ij_mean + cos_ij ) / 2;
-					
+					cos_ij_mean = ( cos_ij_mean + cos_ij ) / 2;					
 				};
-	
 			};
 
 			//Calculate the position change due to the Electrostatic Repulsion Force aceleration
@@ -113,16 +103,14 @@ void calc_neuron_distribution(Point * Neuron) {
 			Neuron[i].z += fer_i.z * pow(dltt, 2);
 
 			standarize(  &Neuron[i]  );
-		}
-
-	}
+		};
+	};
 
 
 	double sin_ij_mean = sqrt(  1 - pow(cos_ij_mean, 2));
 	double angle_mean = atan( sin_ij_mean / cos_ij_mean );
 
 	printf("mean angle: %f  \n", angle_mean * 180/PI);
-
 };
 
 
@@ -130,7 +118,6 @@ void calc_neuron_distribution(Point * Neuron) {
 int main() {
 
 	Point Neuron[MAX_NEURON_NUMBER];
-
 
 	//Pass the reference to the first element on the Neuron Array, the func
 	// will work with the rest.
