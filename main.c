@@ -13,19 +13,47 @@ typedef struct {
    double z;
 } Point;
 
-//Prototypes
-double random();
-Point * random_point(Point *p);
-Point * standarize(Point *p);
-double calc_norm(Point p);
-void point_init(Point *p, double x, double y, double z);
+
+double random(){
+	//RAND_MAX is a constant defined in the rand module
+	double r = 2 * (  (double)rand() / (double)RAND_MAX  ) - 0.5;
+    return  r;
+};
 
 
+Point * random_point(Point *p) {
+
+	p->x = random();
+	p->y = random();
+	p->z = random();
+
+	return p;
+};
 
 
-int main() {
+double calc_norm(Point p) {
 
-	Point Neuron[MAX_NEURON_NUMBER];
+	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
+};
+
+
+Point * standarize(Point *p) {
+
+	double norm = calc_norm(*p);
+	p->x /= norm;
+	p->y /= norm;
+	p->z /= norm;
+
+	return p;
+};
+
+void point_init(Point *p, double x, double y, double z) {
+	p->x = x;
+	p->y = y;
+	p->z = z;
+};
+
+void calc_neuron_distribution(Point * Neuron) {
 
 	int i;
 	int iter;
@@ -35,11 +63,7 @@ int main() {
 	Point distance;
 	double distance_norm;
 	float dltt = 0.1;
-
 	double cos_ij = 0;
-
-
-
 	double cos_ij_mean = 0;
 
 	//initializice vector
@@ -99,47 +123,21 @@ int main() {
 
 	printf("mean angle: %f  \n", angle_mean * 180/PI);
 
+};
+
+
+
+int main() {
+
+	Point Neuron[MAX_NEURON_NUMBER];
+
+
+	//Pass the reference to the first element on the Neuron Array, the func
+	// will work with the rest.
+	calc_neuron_distribution(&Neuron[0]);
+
 	return 0;	
 };
 
 
 
-
-double random(){
-	//RAND_MAX is a constant defined in the rand module
-	double r = 2 * (  (double)rand() / (double)RAND_MAX  ) - 0.5;
-    return  r;
-};
-
-
-Point * random_point(Point *p) {
-
-	p->x = random();
-	p->y = random();
-	p->z = random();
-
-	return p;
-};
-
-
-double calc_norm(Point p) {
-
-	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
-};
-
-
-Point * standarize(Point *p) {
-
-	double norm = calc_norm(*p);
-	p->x /= norm;
-	p->y /= norm;
-	p->z /= norm;
-
-	return p;
-};
-
-void point_init(Point *p, double x, double y, double z) {
-	p->x = x;
-	p->y = y;
-	p->z = z;
-};

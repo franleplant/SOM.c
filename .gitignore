@@ -25,3 +25,8 @@
 
 # Main file
 main
+
+
+
+
+*.sublime-workspace
