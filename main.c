@@ -76,7 +76,7 @@ typedef struct {
 
 
 
-void calc_neuron_distribution(Neuron * neurons) {
+void calc_neuron_distribution(Neuron * neurons, int length) {
 
 	
 	// Electrostatic repulsion Force
@@ -88,18 +88,18 @@ void calc_neuron_distribution(Neuron * neurons) {
 	int i, j, iter;
 
 	//initializice vector
-	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
+	for(i = 0; i < length; i++) {
 		standarize(  random_point(&(neurons[i].point))  );	
 	};
 
 
 	//Calculate the neuron distribution
 	for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
-		for(i = 0; i < MAX_NEURON_NUMBER; i++) {
+		for(i = 0; i < length; i++) {
 
 			point_init(&fer_i, 0, 0, 0);
 
-			for(j = 0; j < MAX_NEURON_NUMBER; j++) {
+			for(j = 0; j < length; j++) {
 
 				distance.x = neurons[i].point.x - neurons[j].point.x;
 				distance.y = neurons[i].point.y - neurons[j].point.y;
@@ -146,7 +146,7 @@ int main() {
 
 	//Pass the reference to the first element on the Neuron Array, the func
 	// will work with the rest.
-	calc_neuron_distribution(&neurons[0]);
+	calc_neuron_distribution(&neurons[0], MAX_NEURON_NUMBER);
 
 	return 0;	
 };
