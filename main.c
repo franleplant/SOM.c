@@ -3,15 +3,9 @@
 #include <math.h> /* sqrt(), pow() */
 
 #define MAX_NEURON_NUMBER 270
+#define MAX_SYNAPSIS_NUMBER 637
 #define MAX_ITERATION_NUMBER 3000
 #define PI 3.14159265358979323846
-
-
-typedef struct {
-   double x;
-   double y;
-   double z;
-} Point;
 
 
 double random(){
@@ -19,6 +13,18 @@ double random(){
 	double r = 2 * (  (double)rand() / (double)RAND_MAX  ) - 0.5;
     return  r;
 };
+
+
+/*
+ Point typedef and functions
+*/
+
+
+typedef struct {
+   double x;
+   double y;
+   double z;
+} Point;
 
 
 Point * random_point(Point *p) {
@@ -53,7 +59,24 @@ void point_init(Point *p, double x, double y, double z) {
 	p->z = z;
 };
 
-void calc_neuron_distribution(Point * Neuron) {
+
+/*
+Neuron typedef and functions
+*/
+
+
+typedef struct {
+
+  double W_inverse[MAX_SYNAPSIS_NUMBER];
+  double W_direrct[MAX_SYNAPSIS_NUMBER]; 
+  Point point;
+
+} Neuron;
+
+
+
+
+void calc_neuron_distribution(Neuron * neurons) {
 
 	
 	// Electrostatic repulsion Force
@@ -66,7 +89,7 @@ void calc_neuron_distribution(Point * Neuron) {
 
 	//initializice vector
 	for(i = 0; i < MAX_NEURON_NUMBER; i++) {
-		standarize(  random_point(&Neuron[i])  );	
+		standarize(  random_point(&(neurons[i].point))  );	
 	};
 
 
@@ -78,9 +101,9 @@ void calc_neuron_distribution(Point * Neuron) {
 
 			for(j = 0; j < MAX_NEURON_NUMBER; j++) {
 
-				distance.x = Neuron[i].x - Neuron[j].x;
-				distance.y = Neuron[i].y - Neuron[j].y;
-				distance.z = Neuron[i].z - Neuron[j].z;
+				distance.x = neurons[i].point.x - neurons[j].point.x;
+				distance.y = neurons[i].point.y - neurons[j].point.y;
+				distance.z = neurons[i].point.z - neurons[j].point.z;
 
 				distance_norm = calc_norm(distance);
 
@@ -92,17 +115,19 @@ void calc_neuron_distribution(Point * Neuron) {
 
 				if (iter == 2999) {
 					//Calculate angular cosine between Neurons i and j
-					cos_ij = Neuron[i].x * Neuron[j].x + Neuron[i].y * Neuron[j].y + Neuron[i].z * Neuron[j].z;
+					cos_ij = neurons[i].point.x * neurons[j].point.x + 
+                                                 neurons[i].point.y * neurons[j].point.y + 
+                                                 neurons[i].point.z * neurons[j].point.z;
 					cos_ij_mean = ( cos_ij_mean + cos_ij ) / 2;					
 				};
 			};
 
 			//Calculate the position change due to the Electrostatic Repulsion Force aceleration
-			Neuron[i].x += fer_i.x * pow(dltt, 2);
-			Neuron[i].y += fer_i.y * pow(dltt, 2);
-			Neuron[i].z += fer_i.z * pow(dltt, 2);
+			neurons[i].point.x += fer_i.x * pow(dltt, 2);
+			neurons[i].point.y += fer_i.y * pow(dltt, 2);
+			neurons[i].point.z += fer_i.z * pow(dltt, 2);
 
-			standarize(  &Neuron[i]  );
+			standarize(  &(neurons[i].point)  );
 		};
 	};
 
@@ -117,11 +142,11 @@ void calc_neuron_distribution(Point * Neuron) {
 
 int main() {
 
-	Point Neuron[MAX_NEURON_NUMBER];
+	Neuron neurons[MAX_NEURON_NUMBER];
 
 	//Pass the reference to the first element on the Neuron Array, the func
 	// will work with the rest.
-	calc_neuron_distribution(&Neuron[0]);
+	calc_neuron_distribution(&neurons[0]);
 
 	return 0;	
 };
