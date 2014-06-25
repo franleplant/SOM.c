@@ -7,11 +7,14 @@
 #define MAX_ITERATION_NUMBER 3000
 #define PI 3.14159265358979323846
 
-
 double random(){
-	//RAND_MAX is a constant defined in the rand module
-	double r = 2 * (  (double)rand() / (double)RAND_MAX  ) - 0.5;
-    return  r;
+  //RAND_MAX is a constant defined in the rand module
+  return  (double)rand() / (double)RAND_MAX;
+};
+
+
+double random_sphere_coord(){
+    return  2 * random() - 0.5;
 };
 
 
@@ -29,9 +32,9 @@ typedef struct {
 
 Point * random_point(Point *p) {
 
-	p->x = random();
-	p->y = random();
-	p->z = random();
+	p->x = random_sphere_coord();
+	p->y = random_sphere_coord();
+	p->z = random_sphere_coord();
 
 	return p;
 };
@@ -68,7 +71,7 @@ Neuron typedef and functions
 typedef struct {
 
   double W_inverse[MAX_SYNAPSIS_NUMBER];
-  double W_direrct[MAX_SYNAPSIS_NUMBER]; 
+  double W_direct[MAX_SYNAPSIS_NUMBER]; 
   Point point;
 
 } Neuron;
@@ -138,17 +141,31 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
 	printf("mean angle: %f  \n", angle_mean * 180/PI);
 };
 
+void init_neurons_weigths(Neuron * neurons, int length, int weight_length){
 
+  for(int i = 0; i < length; i++) {
+    for(int w = 0; w < weight_length; w++ ){
+      neurons[i].W_inverse[w] = random();
+      neurons[i].W_direct[w] = random();
+
+    }
+
+  }
+
+  return;
+};
 
 int main() {
 
-	Neuron neurons[MAX_NEURON_NUMBER];
+  Neuron neurons[MAX_NEURON_NUMBER];
 
-	//Pass the reference to the first element on the Neuron Array, the func
-	// will work with the rest.
-	calc_neuron_distribution(&neurons[0], MAX_NEURON_NUMBER);
+  //Pass the reference to the first element on the Neuron Array, the func
+  // will work with the rest.
+  calc_neuron_distribution(&neurons[0], MAX_NEURON_NUMBER);
 
-	return 0;	
+  init_neurons_weigths(&neurons[0], MAX_NEURON_NUMBER, MAX_SYNAPSIS_NUMBER); 
+
+  return 0;	
 };
 
 
