@@ -141,7 +141,7 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
 	printf("mean angle: %f  \n", angle_mean * 180/PI);
 };
 
-void init_neurons_weigths(Neuron * neurons, int length, int weight_length){
+void init_neurons_weights(Neuron * neurons, int length, int weight_length){
 
   for(int i = 0; i < length; i++) {
     for(int w = 0; w < weight_length; w++ ){
@@ -163,7 +163,7 @@ int main() {
   // will work with the rest.
   calc_neuron_distribution(&neurons[0], MAX_NEURON_NUMBER);
 
-  init_neurons_weigths(&neurons[0], MAX_NEURON_NUMBER, MAX_SYNAPSIS_NUMBER); 
+  init_neurons_weights(&neurons[0], MAX_NEURON_NUMBER, MAX_SYNAPSIS_NUMBER); 
 
   return 0;	
 };
