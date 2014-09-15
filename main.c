@@ -1,66 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h> /* randomize(), random() */
 #include <math.h> /* sqrt(), pow() */
+#include "Point/point.h"
+#include "random/random.h"
+
 
 #define MAX_NEURON_NUMBER 270
 #define MAX_SYNAPSIS_NUMBER 637
 #define MAX_ITERATION_NUMBER 3000
 #define PI 3.14159265358979323846
 
-double random(){
-  //RAND_MAX is a constant defined in the rand module
-  return  (double)rand() / (double)RAND_MAX;
-};
 
 
-double random_sphere_coord(){
-    return  2 * random() - 0.5;
-};
 
-
-/*
- Point typedef and functions
-*/
-
-
-typedef struct {
-   double x;
-   double y;
-   double z;
-} Point;
-
-
-Point * random_point(Point *p) {
-
-	p->x = random_sphere_coord();
-	p->y = random_sphere_coord();
-	p->z = random_sphere_coord();
-
-	return p;
-};
-
-
-double calc_norm(Point p) {
-
-	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
-};
-
-
-Point * standarize(Point *p) {
-
-	double norm = calc_norm(*p);
-	p->x /= norm;
-	p->y /= norm;
-	p->z /= norm;
-
-	return p;
-};
-
-void point_init(Point *p, double x, double y, double z) {
-	p->x = x;
-	p->y = y;
-	p->z = z;
-};
 
 
 /*
@@ -78,7 +29,7 @@ typedef struct {
 
 
 
-
+//TODO: change this fn's name to something like calc_sphere_neuron_distribution
 void calc_neuron_distribution(Neuron * neurons, int length) {
 
 	

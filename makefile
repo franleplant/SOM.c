@@ -1,5 +1,5 @@
 P = main
-OBJECTS= main.c
+OBJECTS= Point/point.c random/random.c main.c 
 CFLAGS = -g -Wall $(OPTIMIZATION) 
 LDLIBS= -lm
 CC=c99
