@@ -3,7 +3,12 @@
 
 
 
-#include "point_struct.h"
+
+typedef struct {
+   double x;
+   double y;
+   double z;
+} Point;
 
 
 Point * random_point(Point *p);

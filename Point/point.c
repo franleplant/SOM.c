@@ -1,6 +1,6 @@
 #include <math.h> /* sqrt(), pow() */
 #include "../random/random.h"
-#include "point_struct.h"
+#include "point.h"
 
 
 
