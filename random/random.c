@@ -2,8 +2,8 @@
 
 
 double random(){
-  //RAND_MAX is a constant defined in the rand module
-  return  (double)rand() / (double)RAND_MAX;
+    //RAND_MAX is a constant defined in the rand module
+    return  (double)rand() / (double)RAND_MAX;
 };
 
 
