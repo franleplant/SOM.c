@@ -32,8 +32,7 @@ make
 
 1. Visit `random/test.c` and create an analog file for the functionality that you want to test.
 2. Visit `test.conf.c` and add the proper header file of the new functionality being tested and add the SUITE to the suite list and as an `extern` variable.
-3. Visit `Makefile` and add to the `TEST_OBJECTS` variable the file containing the tests and the SUITE.
-4. Run `make test` and be happy!
+3. Run `make test` and be happy!
 
 ## Timing
 

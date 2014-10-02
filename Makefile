@@ -7,7 +7,7 @@ CC=c99
 OPTIMIZATION=-O3
 
 TEST_MAIN= test.conf.c
-TEST_OBJECTS= random/test.c 
+TEST_OBJECTS= $(wildcard **/test.c) 
 
 all: $(P)
 
