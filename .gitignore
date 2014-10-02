@@ -27,6 +27,7 @@
 main
 
 
+*.swp
 
 
 *.sublime-workspace
