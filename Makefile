@@ -1,16 +1,19 @@
-P = main
-OBJECTS= Point/point.c random/random.c main.c 
+P= main
+OBJECTS= Point/point.c random/random.c 
+MAIN= main.c
 CFLAGS = -g -Wall $(OPTIMIZATION) 
 LDLIBS= -lm
 CC=c99
 OPTIMIZATION=-O3
 
+TEST_MAIN= test.conf.c
+TEST_OBJECTS= random/test.c 
 
 all: $(P)
 
 
 $(P): clean
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(P)  $(LDLIBS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(MAIN) -o $(P)  $(LDLIBS)
 
 
 # Time tasks
@@ -37,6 +40,9 @@ verbose: clean $(P)
 clean:
 	rm -f $(P); clear
 
+test: clean 
+	$(CC) $(OBJECTS) $(TEST_OBJECTS) $(TEST_MAIN) -o test $(LDLIBS)
+	./test
 
 # $@ the full target filename
 # $* The target file with the suffix cut off. So if the target is  prog.o
