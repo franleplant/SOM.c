@@ -1,15 +1,20 @@
 SOM.c
 =====
 
-### Run the code
+## Requirements
+
+```sh
+#download git submodules
+git submodule init
+git submodule update
+```
 
 
-In the [SOM.c-box](https://github.com/franleplant/SOM.c-box) environment:
+## Run the code
+
 
 
 ```bash
-vagrant up && vagrant ssh
-cd shared/SOM
 make
 ./main
 ```
