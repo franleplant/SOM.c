@@ -8,6 +8,6 @@ TEST example() {
     PASS();
 }
 
-GREATEST_SUITE(example_suite) {
+SUITE(example_suite) {
     RUN_TEST(example);
 }
