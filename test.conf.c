@@ -1,7 +1,8 @@
 #include "./lib/greatest/greatest.h"
 
 
-extern SUITE(example_suite)
+
+extern SUITE(example_suite);
 
 /* Expand to all the definitions that need to be in
 the test runner's main file. */
