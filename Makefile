@@ -38,11 +38,11 @@ verbose: clean $(P)
 
 
 clean:
-	rm -f $(P); clear
+	rm -f $(P) test; clear
 
 test: clean 
 	$(CC) $(OBJECTS) $(TEST_OBJECTS) $(TEST_MAIN) -o test $(LDLIBS)
-	./test
+	./test -v | lib/greatest/greenest
 
 # $@ the full target filename
 # $* The target file with the suffix cut off. So if the target is  prog.o
