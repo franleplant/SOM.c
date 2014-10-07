@@ -68,6 +68,27 @@ TEST test_calc_norm() {
 }
 
 
+TEST test_point_standarize() {
+    Point p;
+    Point * q;
+
+    point_init(&p, 1, 2, 2);
+    q = point_standarize(&p);
+
+    ASSERT_EQm("it should standarize mathematically a given point: x coordinate", p.x, (double) 1/3);
+    ASSERT_EQm("it should standarize mathematically a given point: y coordinate", p.y, (double) 2/3);
+    ASSERT_EQm("it should standarize mathematically a given point: z coordinate", p.z, (double) 2/3);
+
+
+
+    ASSERTm("it should return a pointer to the Point struct", p.x == q->x);
+    ASSERTm("it should return a pointer to the Point struct", p.y == q->y);
+    ASSERTm("it should return a pointer to the Point struct", p.z == q->z);
+
+    PASS();
+}
+
+
 
 
 SUITE(point_module) {
@@ -75,4 +96,5 @@ SUITE(point_module) {
     RUN_TEST(test_point_init);
     RUN_TEST(test_random_point);
     RUN_TEST(test_calc_norm);
+    RUN_TEST(test_point_standarize);
 }

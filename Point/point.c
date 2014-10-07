@@ -40,13 +40,11 @@ double calc_norm(Point p) {
 };
 
 
-
-
 /*
-	standarize
+	point_standarize
 		summary: Standarize a given point
 */
-Point * standarize(Point *p) {
+Point * point_standarize(Point *p) {
 
 	double norm = calc_norm(*p);
 	p->x /= norm;
