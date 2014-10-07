@@ -53,8 +53,26 @@ TEST test_random_point() {
     PASS();
 }
 
+
+
+TEST test_calc_norm() {
+    Point p;
+    double res;
+
+    point_init(&p, 1, 2, 2);
+    res = calc_norm(p);
+
+    ASSERTm("it should return the vectorial norm of a point p", res == 3 );
+
+    PASS();
+}
+
+
+
+
 SUITE(point_module) {
     RUN_TEST(test_point_struct);
     RUN_TEST(test_point_init);
     RUN_TEST(test_random_point);
+    RUN_TEST(test_calc_norm);
 }

@@ -30,6 +30,17 @@ Point * random_point(Point *p) {
 	return p;
 };
 
+/*
+	calc_norm
+		summary: calculate and return the norm of a given 3d point.
+*/
+double calc_norm(Point p) {
+
+	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
+};
+
+
+
 
 /*
 	standarize
@@ -44,16 +55,5 @@ Point * standarize(Point *p) {
 
 	return p;
 };
-
-/*
-	calc_norm
-		summary: calculate and return the norm of a given 3d point.
-*/
-double calc_norm(Point p) {
-
-	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
-};
-
-
 
 
