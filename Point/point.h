@@ -15,7 +15,7 @@ typedef struct {
 Point * random_point(Point *p);
 double calc_norm(Point p);
 Point * standarize(Point *p);
-void point_init(Point *p, double x, double y, double z);
+Point * point_init(Point *p, double x, double y, double z);
 
 
 

@@ -3,17 +3,16 @@
 #include "point.h"
 
 
-
-
-
 /*
 	point_init
 		summary: Load a point with certain coordinates
 */
-void point_init(Point *p, double x, double y, double z) {
+Point * point_init(Point *p, double x, double y, double z) {
 	p->x = x;
 	p->y = y;
 	p->z = z;
+
+    return p;
 };
 
 
