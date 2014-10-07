@@ -36,11 +36,11 @@ TEST test_point_init() {
     PASS();
 }
 
-TEST test_random_point() {
+TEST test_point_random() {
     Point p;
     Point * q;
 
-    q = random_point(&p);
+    q = point_random(&p);
 
     ASSERTm("it should create a Point struct with random x attribute", p.x > -100);
     ASSERTm("it should create a Point struct with random y attribute", p.y > -100);
@@ -55,12 +55,12 @@ TEST test_random_point() {
 
 
 
-TEST test_calc_norm() {
+TEST test_point_calc_norm() {
     Point p;
     double res;
 
     point_init(&p, 1, 2, 2);
-    res = calc_norm(p);
+    res = point_calc_norm(p);
 
     ASSERTm("it should return the vectorial norm of a point p", res == 3 );
 
@@ -94,7 +94,7 @@ TEST test_point_standarize() {
 SUITE(point_module) {
     RUN_TEST(test_point_struct);
     RUN_TEST(test_point_init);
-    RUN_TEST(test_random_point);
-    RUN_TEST(test_calc_norm);
+    RUN_TEST(test_point_random);
+    RUN_TEST(test_point_calc_norm);
     RUN_TEST(test_point_standarize);
 }

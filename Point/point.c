@@ -4,8 +4,7 @@
 
 
 /*
-	point_init
-		summary: Load a point with certain coordinates
+    Load a point with certain coordinates
 */
 Point * point_init(Point *p, double x, double y, double z) {
 	p->x = x;
@@ -18,10 +17,9 @@ Point * point_init(Point *p, double x, double y, double z) {
 
 
 /*
-	random_point
-		summary: Load a point with random coordinates
+    Load a point with random coordinates
 */
-Point * random_point(Point *p) {
+Point * point_random(Point *p) {
 
 	p->x = random_sphere_coord();
 	p->y = random_sphere_coord();
@@ -31,22 +29,20 @@ Point * random_point(Point *p) {
 };
 
 /*
-	calc_norm
-		summary: calculate and return the norm of a given 3d point.
+    calculate and return the norm of a given 3d point.
 */
-double calc_norm(Point p) {
+double point_calc_norm(Point p) {
 
 	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
 };
 
 
 /*
-	point_standarize
-		summary: Standarize a given point
+    Standarize a given point
 */
 Point * point_standarize(Point *p) {
 
-	double norm = calc_norm(*p);
+	double norm = point_calc_norm(*p);
 	p->x /= norm;
 	p->y /= norm;
 	p->z /= norm;
