@@ -1,31 +1,13 @@
-#include <stdio.h>
-#include <math.h> /* sqrt(), pow() */
-#include "Point/point.h"
-#include "random/random.h"
-
-
 #define MAX_NEURON_NUMBER 270
 #define MAX_SYNAPSIS_NUMBER 637
 #define MAX_ITERATION_NUMBER 3000
 #define PI 3.14159265358979323846
 
-
-
-
-
-
-/*
-Neuron typedef and functions
-*/
-
-
-typedef struct {
-
-    double W_inverse[MAX_SYNAPSIS_NUMBER];
-    double W_direct[MAX_SYNAPSIS_NUMBER]; 
-    Point point;
-
-} Neuron;
+#include <stdio.h>
+#include <math.h> /* sqrt(), pow() */
+#include "Point/point.h"
+#include "random/random.h"
+#include "Neuron/neuron.h"
 
 
 
@@ -43,7 +25,7 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
 
     //initializice vector
     for(i = 0; i < length; i++) {
-        standarize(  random_point(&(neurons[i].point))  );  
+        point_standarize(  point_random(&(neurons[i].point))  );  
     };
 
 
@@ -59,7 +41,7 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
                 distance.y = neurons[i].point.y - neurons[j].point.y;
                 distance.z = neurons[i].point.z - neurons[j].point.z;
 
-                distance_norm = calc_norm(distance);
+                distance_norm = point_calc_norm(distance);
 
                 if (distance_norm > 0) {
                     fer_i.x += distance.x / distance_norm;
@@ -81,7 +63,7 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
             neurons[i].point.y += fer_i.y * pow(dltt, 2);
             neurons[i].point.z += fer_i.z * pow(dltt, 2);
 
-            standarize(  &(neurons[i].point)  );
+            point_standarize(  &(neurons[i].point)  );
         };
     };
 
@@ -96,8 +78,8 @@ void init_neurons_weights(Neuron * neurons, int length, int weight_length){
 
     for(int i = 0; i < length; i++) {
         for(int w = 0; w < weight_length; w++ ){
-            neurons[i].W_inverse[w] = random();
-            neurons[i].W_direct[w] = random();
+            neurons[i].W_inverse[w] = urandom();
+            neurons[i].W_direct[w] = urandom();
 
         }
     }
