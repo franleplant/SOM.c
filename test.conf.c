@@ -4,6 +4,9 @@
 
 extern SUITE(random_module);
 extern SUITE(point_module);
+extern SUITE(neuron_module);
+
+
 
 /* 
     Expand to all the definitions that need to be in
@@ -18,9 +21,9 @@ int main(int argc, char **argv) {
     //Run suites
     RUN_SUITE(random_module);   
     RUN_SUITE(point_module);  
+    RUN_SUITE(neuron_module);
 
 
     /* display results */
-
     GREATEST_MAIN_END(); 
 }
