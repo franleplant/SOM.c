@@ -9,12 +9,16 @@ TEST test_neuron_struct() {
     Neuron n;
     n.W_inverse[0] = 1;
     n.W_direct[1]  = 1;
-    
+
+
+    point_init( &(n.point), 1, 1, 1); 
 
     ASSERTm("it should create a Neuron struct with W_inverse attribute", n.W_inverse[0] == 1); 
     ASSERTm("it should create a Neuron struct with W_direct attribute", n.W_direct[1] == 1); 
-
-
+   
+    ASSERTm("it should create a Neuron struct with a Point attribute ", n.point.x  == 1); 
+    ASSERTm("it should create a Neuron struct with a Point attribute ", n.point.y  == 1); 
+    ASSERTm("it should create a Neuron struct with a Point attribute ", n.point.z  == 1); 
 
     PASS();
 }
