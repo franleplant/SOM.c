@@ -6,7 +6,7 @@
 /*
     Load a point with certain coordinates
 */
-Point * point_init(Point *p, double x, double y, double z) {
+inline Point * point_init(Point *p, double x, double y, double z) {
 	p->x = x;
 	p->y = y;
 	p->z = z;
@@ -19,7 +19,7 @@ Point * point_init(Point *p, double x, double y, double z) {
 /*
     Load a point with random coordinates
 */
-Point * point_random(Point *p) {
+inline Point * point_random(Point *p) {
 
 	p->x = random_sphere_coord();
 	p->y = random_sphere_coord();
