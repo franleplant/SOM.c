@@ -31,8 +31,7 @@ Point * point_random(Point *p) {
 /*
     calculate and return the norm of a given 3d point.
 */
-double point_calc_norm(Point p) {
-
+inline double point_calc_norm(Point * p) {
 	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
 };
 
