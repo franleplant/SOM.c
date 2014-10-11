@@ -1,5 +1,5 @@
 P= main
-OBJECTS= Point/point.c random/random.c 
+OBJECTS= Neuron/neuron.c Point/point.c random/random.c 
 MAIN= main.c
 CFLAGS = -g -Wall $(OPTIMIZATION) 
 LDLIBS= -lm

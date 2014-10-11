@@ -22,26 +22,40 @@ TEST test_neuron_struct() {
 
     PASS();
 }
-/*
-TEST test_point_init() {
-    Point p;
-    Point * q; 
 
-    q = point_init(&p, 1, 2, 3);
+TEST test_neuron_init() {
+    Neuron n;
+    Neuron * q;
 
-    ASSERTm("it should create a Point struct that contains x attribute", p.x == 1); 
-    ASSERTm("it should create a Point struct that contains y attribute", p.y == 2); 
-    ASSERTm("it should create a Point struct that contains z attribute", p.z == 3); 
+    q = neuron_init(&n, 3);
 
-    ASSERTm("it should return a pointer to the Point struct", p.x == q->x);
-    ASSERTm("it should return a pointer to the Point struct", p.y == q->y);
-    ASSERTm("it should return a pointer to the Point struct", p.z == q->z);
+    //Assert that the weights are between boundaries and that they are in fact doubles
+    ASSERTm("it should create a Neuron structure with random W_direct",  n.W_direct[0]>-1  && n.W_direct[1]>-1  && n.W_direct[2]>-1); 
+    ASSERTm("it should create a Neuron structure with random W_inverse", n.W_inverse[0]>-1 && n.W_inverse[1]>-1 && n.W_inverse[2]>-1); 
+
+
+    //Assert the existance of the point in the fact that they are doubles and thus comparable
+    ASSERTm("it should return a pointer to the Neuron struct's point and it should create a random point", n.point.x == q->point.x);
+    ASSERTm("it should return a pointer to the Neuron struct's point and it should create a random point", n.point.y == q->point.y);
+    ASSERTm("it should return a pointer to the Neuron struct's point and it should create a random point", n.point.z == q->point.z);
+
+    ASSERTm("it should return a pointer to the Neuron struct's direct weights", n.W_direct[0] == q->W_direct[0]);
+    ASSERTm("it should return a pointer to the Neuron struct's direct weights", n.W_direct[1] == q->W_direct[1]);
+    ASSERTm("it should return a pointer to the Neuron struct's direct weights", n.W_direct[2] == q->W_direct[2]);
+
+
+
+    ASSERTm("it should return a pointer to the Neuron struct's inverse weights", n.W_inverse[0] == q->W_inverse[0]);
+    ASSERTm("it should return a pointer to the Neuron struct's inverse weights", n.W_inverse[1] == q->W_inverse[1]);
+    ASSERTm("it should return a pointer to the Neuron struct's inverse weights", n.W_inverse[2] == q->W_inverse[2]);
 
     PASS();
 }
 
-*/
+
 
 SUITE(neuron_module) {
     RUN_TEST(test_neuron_struct);
+    RUN_TEST(test_neuron_init);
+
 }

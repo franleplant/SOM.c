@@ -3,6 +3,7 @@
 
 #include "../Point/point.h"
 
+// Defaults to facilitate testing
 #ifndef MAX_SYNAPSIS_NUMBER
 #define MAX_SYNAPSIS_NUMBER 3
 #endif
@@ -19,5 +20,8 @@ typedef struct {
 } Neuron;
 
 
+
+
+Neuron * neuron_init(Neuron * neuron, int weight_length);
 
 #endif
