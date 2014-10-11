@@ -39,7 +39,7 @@ inline double point_calc_norm(Point * p) {
 /*
     Standarize a given point
 */
-Point * point_standarize(Point *p) {
+inline Point * point_standarize(Point *p) {
 
 	double norm = point_calc_norm(*p);
 	p->x /= norm;
@@ -48,5 +48,3 @@ Point * point_standarize(Point *p) {
 
 	return p;
 };
-
-
