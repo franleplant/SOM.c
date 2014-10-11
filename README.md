@@ -1,6 +1,8 @@
 SOM.c
 =====
 
+[![Build Status](https://travis-ci.org/franleplant/SOM.c.svg?branch=Neuron)](https://travis-ci.org/franleplant/SOM.c)
+
 ## Requirements
 
 ```sh
