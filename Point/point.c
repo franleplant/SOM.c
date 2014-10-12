@@ -3,26 +3,25 @@
 #include "point.h"
 
 
-
-
-
 /*
-	point_init
-		summary: Load a point with certain coordinates
+    Load a point with certain coordinates
 */
-void point_init(Point *p, double x, double y, double z) {
+inline Point *
+point_init(Point *p, double x, double y, double z) {
 	p->x = x;
 	p->y = y;
 	p->z = z;
+
+    return p;
 };
 
 
 
 /*
-	random_point
-		summary: Load a point with random coordinates
+    Load a point with random coordinates
 */
-Point * random_point(Point *p) {
+inline Point * 
+point_random(Point *p) {
 
 	p->x = random_sphere_coord();
 	p->y = random_sphere_coord();
@@ -31,30 +30,35 @@ Point * random_point(Point *p) {
 	return p;
 };
 
+/*
+    calculate and return the norm of a given 3d point.
+*/
+inline double 
+point_calc_norm(Point * p) {
+	return sqrt(  pow(p->x, 2) + pow(p->y, 2) + pow(p->z, 2) ); 
+};
+
 
 /*
-	standarize
-		summary: Standarize a given point
+    Standarize a given point
 */
-Point * standarize(Point *p) {
+inline Point * 
+point_standarize(Point *p) {
 
-	double norm = calc_norm(*p);
-	p->x /= norm;
-	p->y /= norm;
-	p->z /= norm;
+	double norm = point_calc_norm(p);
+    if (norm == 0 ) {
+     
+        p->x = 0;
+        p->y = 0;
+        p->z = 0;
+           
+    } else {
+        
+        p->x /= norm;
+        p->y /= norm;
+        p->z /= norm;
+
+    }
 
 	return p;
 };
-
-/*
-	calc_norm
-		summary: calculate and return the norm of a given 3d point.
-*/
-double calc_norm(Point p) {
-
-	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
-};
-
-
-
-
