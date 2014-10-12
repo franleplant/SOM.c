@@ -42,9 +42,19 @@ inline double point_calc_norm(Point * p) {
 inline Point * point_standarize(Point *p) {
 
 	double norm = point_calc_norm(p);
-	p->x /= norm;
-	p->y /= norm;
-	p->z /= norm;
+    if (norm == 0 ) {
+     
+        p->x = 0;
+        p->y = 0;
+        p->z = 0;
+           
+    } else {
+        
+        p->x /= norm;
+        p->y /= norm;
+        p->z /= norm;
+
+    }
 
 	return p;
 };

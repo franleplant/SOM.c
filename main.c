@@ -18,9 +18,6 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
     // Electrostatic repulsion Force
     Point fer_i, distance;
     float dltt = 0.1;
-    double cos_ij = 0;
-    double cos_ij_mean = 0;
-    double distance_norm;
     int i, j, iter;
 
     //initializice vector
@@ -41,21 +38,12 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
                 distance.y = neurons[i].point.y - neurons[j].point.y;
                 distance.z = neurons[i].point.z - neurons[j].point.z;
 
-                distance_norm = point_calc_norm(distance);
+                point_standarize( &distance );
 
-                if (distance_norm > 0) {
-                    fer_i.x += distance.x / distance_norm;
-                    fer_i.y += distance.y / distance_norm;
-                    fer_i.z += distance.z / distance_norm;
-                };
 
-                if (iter == 2999) {
-                    //Calculate angular cosine between Neurons i and j
-                    cos_ij =    neurons[i].point.x * neurons[j].point.x + 
-                                neurons[i].point.y * neurons[j].point.y + 
-                                neurons[i].point.z * neurons[j].point.z;
-                    cos_ij_mean = ( cos_ij_mean + cos_ij ) / 2;                 
-                };
+                fer_i.x += distance.x;
+                fer_i.y += distance.y;
+                fer_i.z += distance.z;
             };
 
             //Calculate the position change due to the Electrostatic Repulsion Force aceleration
@@ -66,12 +54,6 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
             point_standarize(  &(neurons[i].point)  );
         };
     };
-
-
-    double sin_ij_mean = sqrt(  1 - pow(cos_ij_mean, 2));
-    double angle_mean = atan( sin_ij_mean / cos_ij_mean );
-
-    printf("mean angle: %f  \n", angle_mean * 180/PI);
 };
 
 void init_neurons_weights(Neuron * neurons, int length, int weight_length){
