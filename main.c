@@ -2,6 +2,7 @@
 #define MAX_SYNAPSIS_NUMBER 637
 #define MAX_ITERATION_NUMBER 3000
 #define PI 3.14159265358979323846
+#define DLTT2 0.1 * 0.1
 
 #include <stdio.h>
 #include <math.h> /* sqrt(), pow() */
@@ -14,10 +15,8 @@
 //TODO: change this fn's name to something like calc_sphere_neuron_distribution
 void calc_neuron_distribution(Neuron * neurons, int length) {
 
-    
     // Electrostatic repulsion Force
     Point fer_i, distance;
-    float dltt = 0.1;
     int i, j, iter;
 
     for( i = 0; i < length; i++) {
@@ -47,9 +46,9 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
             };
 
             //Calculate the position change due to the Electrostatic Repulsion Force aceleration
-            neurons[i].point.x += fer_i.x * pow(dltt, 2);
-            neurons[i].point.y += fer_i.y * pow(dltt, 2);
-            neurons[i].point.z += fer_i.z * pow(dltt, 2);
+            neurons[i].point.x += fer_i.x * DLTT2;
+            neurons[i].point.y += fer_i.y * DLTT2;
+            neurons[i].point.z += fer_i.z * DLTT2;
 
             point_standarize(  &(neurons[i].point)  );
         };
