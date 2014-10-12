@@ -20,15 +20,16 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
     float dltt = 0.1;
     int i, j, iter;
 
-    //initializice vector
-    for(i = 0; i < length; i++) {
-        point_standarize(  point_random(&(neurons[i].point))  );  
-    };
 
 
     //Calculate the neuron distribution
     for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
         for(i = 0; i < length; i++) {
+
+            //Assign a random point to neuron i
+            point_standarize(  point_random(&(neurons[i].point))  );  
+            // Initialice neuron i with random weigths
+            neuron_init(  &(neurons[i]), MAX_SYNAPSIS_NUMBER );
 
             point_init(&fer_i, 0, 0, 0);
 
@@ -55,21 +56,6 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
         };
     };
 };
-
-void init_neurons_weights(Neuron * neurons, int length, int weight_length){
-
-    for(int i = 0; i < length; i++) {
-        for(int w = 0; w < weight_length; w++ ){
-            neurons[i].W_inverse[w] = urandom();
-            neurons[i].W_direct[w] = urandom();
-
-        }
-    }
-
-    return;
-};
-
-
     
 int main() {
 
@@ -78,8 +64,6 @@ int main() {
     //Pass the reference to the first element on the Neuron Array, the func
     // will work with the rest.
     calc_neuron_distribution(&neurons[0], MAX_NEURON_NUMBER);
-
-    init_neurons_weights(&neurons[0], MAX_NEURON_NUMBER, MAX_SYNAPSIS_NUMBER); 
     return 0; 
 };
 
