@@ -20,16 +20,20 @@ void calc_neuron_distribution(Neuron * neurons, int length) {
     float dltt = 0.1;
     int i, j, iter;
 
+    for( i = 0; i < length; i++) {
+         //Assign a random point to neuron i
+        point_standarize(  point_random(&(neurons[i].point))  );  
+        // Initialice neuron i with random weigths
+        neuron_init(  &(neurons[i]), MAX_SYNAPSIS_NUMBER );
+
+
+    
+    };
 
 
     //Calculate the neuron distribution
     for(iter = 0; iter < MAX_ITERATION_NUMBER; iter++){
         for(i = 0; i < length; i++) {
-
-            //Assign a random point to neuron i
-            point_standarize(  point_random(&(neurons[i].point))  );  
-            // Initialice neuron i with random weigths
-            neuron_init(  &(neurons[i]), MAX_SYNAPSIS_NUMBER );
 
             point_init(&fer_i, 0, 0, 0);
 
