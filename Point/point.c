@@ -32,7 +32,7 @@ inline Point * point_random(Point *p) {
     calculate and return the norm of a given 3d point.
 */
 inline double point_calc_norm(Point * p) {
-	return sqrt(  pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) ); 
+	return sqrt(  pow(p->x, 2) + pow(p->y, 2) + pow(p->z, 2) ); 
 };
 
 
@@ -41,7 +41,7 @@ inline double point_calc_norm(Point * p) {
 */
 inline Point * point_standarize(Point *p) {
 
-	double norm = point_calc_norm(*p);
+	double norm = point_calc_norm(p);
 	p->x /= norm;
 	p->y /= norm;
 	p->z /= norm;

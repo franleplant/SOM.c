@@ -60,7 +60,7 @@ TEST test_point_calc_norm() {
     double res;
 
     point_init(&p, 1, 2, 2);
-    res = point_calc_norm(p);
+    res = point_calc_norm(&p);
 
     ASSERTm("it should return the vectorial norm of a point p", res == 3 );
 
